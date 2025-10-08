@@ -62,28 +62,12 @@ using chr = char;
 #define fill2d(GRID, ROWS, COLUMNS) for (int i = 0; i < ROWS; i++) for (int j = 0; j < COLUMNS; j++) cin >> GRID[i][j]
 #define vecout(VECTOR) for(int INDEX = 0; INDEX < VECTOR.size(); INDEX++) {cout << VECTOR[INDEX] << ' ';} cout << '\n'
 
-/** structures **/
-
-struct ch {
-    static uint64_t splitmix64(uint64_t x) {
-        x += 0x9e3779b97f4a7c15;
-        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
-        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
-        return x ^ (x >> 31);
-    }
- 
-    size_t operator()(uint64_t x) const {
-        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
-        return splitmix64(x + FIXED_RANDOM);
-    }
-};
-
 /** ---------- -temporary- ---------- **/
 
 struct node{
     str shape="";
     str val="";
-    unordered_map<str,int, ch> adj;
+    unordered_map<str,int> adj;
 };
 
 /** ---------- -main- ---------- **/
